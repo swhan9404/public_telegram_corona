@@ -28,7 +28,7 @@ seungwoon_bot1
 
 ## 만든 방법 정리본
 
-[howTomake.md](howTomake.md)
+[howTomake.md](https://github.com/swhan9404/public_telegram_corona/blob/master/howToMake.md)
 
 
 
