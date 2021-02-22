@@ -10,7 +10,7 @@ seungwoon_bot1
 
 # 2. 서비스 구성
 
-![](readme.assets/service Architecture.png)
+![](readme.assets/serviceArchitecture.png)
 
 1. 텔레그램 봇 구성
 
