@@ -29,7 +29,7 @@ class Crawling :
 
         #chat_ids = set(map(lambda x: x['message']['chat']['id'], response['result'])) # 메세지 보낸 모든 사람들
         #chat_ids ={0 : 1544010213}
-        text= f'증가 확진자 수 : {today_patient}\n현재 확진자 수 : {now_patient}'
+        text= f'누적 확진자 수 : {today_patient}\n증가 확진자 수 : {now_patient}'
 
         for chat_id in chat_ids : 
             message_url = f'{api_url}/sendMessage?chat_id={chat_id}&text={text}'
@@ -85,8 +85,26 @@ firebase = Firebase()
 crawling.sendMessageTest("heroku시작 : "+time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())))
 sched = BlockingScheduler()
 
-@sched.scheduled_job('cron', day_of_week='*', hour='9-11', minute='*/6')
+@sched.scheduled_job('cron', day_of_week='*', hour='9-10', minute='*/6')
 def scheduled_job():
+    #crawling.sendMessageTest("작업시작 : "+time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())))
+    before_patient=0
+    now_patient=0
+    today_patient =0
+
+    before_patient = firebase.getData()
+    now_patient, today_patient = crawling.getData()
+
+    # 조건 확인 후 전송
+    if now_patient != before_patient :
+        chat_ids = firebase.getChatIds()
+        
+        crawling.telegram(before_patient, now_patient, today_patient, chat_ids)
+        firebase.updateDataBase(now_patient)
+        #crawling.sendMessageTest("작업끝 : "+time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())))
+
+@sched.scheduled_job('cron', day_of_week='*', hour='14,15,16,18,22', minute='0')
+def scheduled_job2():
     #crawling.sendMessageTest("작업시작 : "+time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())))
     before_patient=0
     now_patient=0
