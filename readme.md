@@ -39,6 +39,8 @@
 2. 코로나 확진자 수 실시간 알림
    - 08:00 ~ 13:00 까지 6분 간격으로 질병관리본부 사이트를 크롤링하여 변경시 텔레그램에 알림
 
+![image-20210416011106209](readme.assets/image-20210416011106209.png)
+
 # 2. 서비스 구성
 
 ![](readme.assets/serviceArchitecture.png)
