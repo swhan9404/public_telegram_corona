@@ -1,8 +1,39 @@
-# 0. 텔레그램 봇 이름
+# 0. 파일의 구성
 
-seungwoon_bot1
+개발환경 : python 3.6.12
+
+- amazonLambda : aws lambda에 올릴 파일
+
+  - RootDirectory를 압축해서 zip파일 업로드 해서 작동
+    - lambda_function.py : 실제 작동 파일
+    - 그 외는 환경 및 필요 키파일 등을 가지고 있음
+
+- heroku : heroku에서 실시간 코로나 정보 알림을 작동하는 파일 부분
+
+  - 이 부분만 때서 git push heroku master 로 배포작업을 하면됨
+
+  - main.py : 실제 핵심 작동로직
+
+  - requirements.txt : 작동하는데 필요한 라이브러리 모음 리스트
+
+    - pip install -r requirements.txt 
+
+      로 개인 환경에 환경 세팅할 수 있음
+
+  - runtime.py : python 버전 명시
+
+  - Profile : Schduler에 특정시간에 주기적으로 process 실행시키기 위함
+
+- telegrambot : 로컬환경에서 개인적으로 텔레그램봇을 건드릴 때 쓰는 파일
+
+  - amazonLambda 의 파일을 작성하기 전 로컬에서 로직 실험해보는 용도로 사용
+  - telepot 과 firebase 사용
+
+
 
 # 1. 서비스 기능 
+
+- 텔레그램 봇 이름 : seungwoon_bot1
 
 1. 봇에 대한 채팅 명령어에 따라 실시간 답변
 2. 코로나 확진자 수 실시간 알림
@@ -93,3 +124,29 @@ seungwoon_bot1
 - 해결
 
   - 비정기적 발표에 대한 대응을 하기위해  14, 15, 16, 18, 22 시에 작업 돌아가도록 스케줄 추가
+
+## 2021.02.29
+
+- 이슈
+  - 챗봇의 답변이 멈춰버림
+- 원인
+  - public_corona repo를 만들고 공개를 하다가 amazon lambda쪽에 올린 파일 중 하나의 키가 노출되서 작동을 멈춤
+- 해결
+  - 일단 api gateway 주소도 노출되어 있어서 혹시 몰라 새로운 api gateway를 만들어서 다시 구성
+  - telegram bot api key를 재발급받고 그에 맞추어 코드들을 수정함
+
+
+
+## 2021.04.03
+
+- 이슈
+  - 누적 확진자와 증가 확진자 표기가 반대로 되어있는 등 자잘한 표기 에러
+- 해결
+  - 표기에 대한 부분을 의미에 알맞게 바꿈
+    - 누적확진자 : 
+    - 증가확진자 :
+- 챗봇 추가 기능 구현
+  - 기능 : 오늘 확진자가 몇 명인지 물어보면 답할 수 있도록
+  - 기능 구현을 위한 바꾼 내용
+    - firebase 내에 누적확진자 밖에 기록하지 않았는데, 증가확진자도 기록하는 것으로 수정
+    - amazon lambda 내에 기능구현을 위한 코드 추가

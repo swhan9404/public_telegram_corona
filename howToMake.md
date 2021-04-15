@@ -1,4 +1,4 @@
-## ㄴ1. firebase 연동
+## 1. firebase 연동
 
 ### 1.1 pip install
 
