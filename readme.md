@@ -1,36 +1,3 @@
-# :pencil: 파일의 구성
-
-개발환경 : python 3.6.12
-
-- amazonLambda : aws lambda에 올릴 파일
-
-  - RootDirectory를 압축해서 zip파일 업로드 해서 작동
-    - lambda_function.py : 실제 작동 파일
-    - 그 외는 환경 및 필요 키파일 등을 가지고 있음
-
-- heroku : heroku에서 실시간 코로나 정보 알림을 작동하는 파일 부분
-
-  - 이 부분만 때서 git push heroku master 로 배포작업을 하면됨
-
-  - main.py : 실제 핵심 작동로직
-
-  - requirements.txt : 작동하는데 필요한 라이브러리 모음 리스트
-
-    - pip install -r requirements.txt 
-
-      로 개인 환경에 환경 세팅할 수 있음
-
-  - runtime.py : python 버전 명시
-
-  - Profile : Schduler에 특정시간에 주기적으로 process 실행시키기 위함
-
-- telegrambot : 로컬환경에서 개인적으로 텔레그램봇을 건드릴 때 쓰는 파일
-
-  - amazonLambda 의 파일을 작성하기 전 로컬에서 로직 실험해보는 용도로 사용
-  - telepot 과 firebase 사용
-
-
-
 # :star: 서비스 기능 
 
 - 텔레그램 봇 이름 : seungwoon_bot1
@@ -87,7 +54,44 @@
 
 
 
+# :pencil: 파일의 구성
+
+개발환경 : python 3.6.12
+
+- amazonLambda : aws lambda에 올릴 파일
+
+  - RootDirectory를 압축해서 zip파일 업로드 해서 작동
+    - lambda_function.py : 실제 작동 파일
+    - 그 외는 환경 및 필요 키파일 등을 가지고 있음
+
+- heroku : heroku에서 실시간 코로나 정보 알림을 작동하는 파일 부분
+
+  - 이 부분만 때서 git push heroku master 로 배포작업을 하면됨
+
+  - main.py : 실제 핵심 작동로직
+
+  - requirements.txt : 작동하는데 필요한 라이브러리 모음 리스트
+
+    - pip install -r requirements.txt 
+
+      로 개인 환경에 환경 세팅할 수 있음
+
+  - runtime.py : python 버전 명시
+
+  - Profile : Schduler에 특정시간에 주기적으로 process 실행시키기 위함
+
+- telegrambot : 로컬환경에서 개인적으로 텔레그램봇을 건드릴 때 쓰는 파일
+
+  - amazonLambda 의 파일을 작성하기 전 로컬에서 로직 실험해보는 용도로 사용
+  - telepot 과 firebase 사용
+
+
+
+
+
 # :fire: 서비스 후 발생한 이슈
+
+[이슈확인하기](https://github.com/swhan9404/public_telegram_corona/issues?q=is%3Aissue+is%3Aclosed)
 
 ## 2021.01.22 
 
